@@ -19,7 +19,7 @@ const port = process.env.PORT || 5000;
 
 app.use(cookieParser());
 // Bypass cors
-app.use(cors({ credentials: true, origin: process.env.API_URL }));
+app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
 
 // const __dirname = path.resolve();
 

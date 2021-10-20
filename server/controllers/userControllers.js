@@ -5,6 +5,7 @@ import User from '../models/User.js';
 import {
   generateActivationToken,
   generateIdToken,
+  generateQRToken,
 } from '../utils/token/index.js';
 import { isProduction } from '../utils/index.js';
 
@@ -62,7 +63,7 @@ export const register = asyncHandler(async (req, res) => {
         generateActivationToken(userExists._id),
         options
       )
-      .json({ otp });
+      .json(generateQRToken({ qrcode: userExists.otp_secret.otpauth_url }));
   }
 
   // Create new user
@@ -76,9 +77,7 @@ export const register = asyncHandler(async (req, res) => {
         generateActivationToken(user._id),
         options
       )
-      .json({
-        otp,
-      });
+      .json(generateQRToken({ qrcode: user.otp_secret.otpauth_url }));
   }
 });
 
@@ -124,7 +123,7 @@ export const registerVerify = asyncHandler(async (req, res) => {
     encoding: 'base32',
     token: req.body.otp,
     step: 900,
-    // window: 1,
+    window: 0,
   });
 
   if (!verified) {
@@ -143,4 +142,3 @@ export const registerVerify = asyncHandler(async (req, res) => {
       .json({ verified, otp });
   }
 });
-

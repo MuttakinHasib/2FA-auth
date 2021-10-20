@@ -3,8 +3,8 @@ import jwt from 'jsonwebtoken';
 /**
  * @param  {String} id
  */
-export const generateTangoToken = payload => {
-  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '365d' });
+export const generateQRToken = payload => {
+  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '15m' });
 };
 
 /**

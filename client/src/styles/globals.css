@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply font-roboto;
+  }
+
+  a,
+  button {
+    @apply font-semibold;
+  }
+}
+
+@layer components {
+  button,
+  a {
+    @apply focus:outline-none;
+  }
+}
