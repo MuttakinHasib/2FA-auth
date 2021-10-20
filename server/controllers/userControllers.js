@@ -122,7 +122,7 @@ export const registerVerify = asyncHandler(async (req, res) => {
     secret: user.otp_secret.base32,
     encoding: 'base32',
     token: req.body.otp,
-    step: 900,
+    // step: 900,
     window: 0,
   });
 
@@ -139,6 +139,6 @@ export const registerVerify = asyncHandler(async (req, res) => {
     res
       .status(201)
       .cookie('_2fa_token', generateIdToken(updatedUser._id), options)
-      .json({ verified, otp });
+      .json({ verified });
   }
 });
